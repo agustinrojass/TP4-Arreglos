@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "pila.h"
+#include <string.h>
 
 void ejercicio1();
 void ejercicio2();
@@ -14,6 +16,14 @@ void ejercicio10();
 void ejercicio11();
 void ejercicio12();
 void ejercicio13();
+
+void cargaInt(int arreglo[],int dimension,int *valildos);
+void muestra(int arreglo[],int validos);
+void sumaInt(int arreglo[],int validos,int *suma);
+void cargaFloat(float arreglo[],int dimension,int *valildos);
+void sumaFloat(float arreglo[],int validos,float *suma);
+void cargaChar(char arreglo[],int dimension,int *validos);
+void busquedaChar(char arreglo,int validos,int *flag,char caracter);
 
 int main()
 {
@@ -115,40 +125,184 @@ int main()
     }
     while(ejercicio!=0);
     printf("\nTP4 TERMINADO\n");
-    printf("\nVersion 1.0\n");
+    printf("\nVersion 1.1\n");
     return 0;
 }
+
+void cargaInt(int arreglo[],int dimension,int *validos)                 //INICIO FUNCION CARGAINT
+{
+    int i;
+    char continuar='s';
+    for(i=0;i<dimension && continuar=='s';i++)
+    {
+        printf("Ingrese un numero entero: ");
+        scanf("%i",&arreglo[i]);
+        printf("Desea ingresar otro numero? s/n Respuesta: ");
+        fflush(stdin);
+        scanf("%c",&continuar);
+        printf("\n");
+    }
+    *validos=i;
+}                                                                       //FIN FUNCION CARGAINT
+void muestra(int arreglo[],int validos)                                 //INICIO FUNCION MUESTRA
+{
+    int i;
+    for(i=0;i<validos;i++)
+    {
+        printf("| %i |",arreglo[i]);
+    }
+}                                                                       //FIN FUNCION MUESTRA
+void sumaInt(int arreglo[],int validos,int *suma)                       //INICIO FUNCION SUMAINT
+{
+    int i;
+    for(i=0;i<validos;i++)
+    {
+        *suma=*suma+arreglo[i];
+    }
+}                                                                       //FIN FUNCION SUMAINT
+void arregloPila(int arreglo[],int validos,Pila *pila)                  //INICIO FUNCION ARREGLOPILA
+{
+    int i;
+    for(i=0;i<validos;i++)
+    {
+        apilar(pila,arreglo[i]);
+    }
+}                                                                       //FIN FUNCION ARREGLOPILA
+void cargaFloat(float arreglo[],int dimension,int *validos)             //INICIO FUNCION CARGAFLOAT
+{
+    int i;
+    char continuar='s';
+    for(i=0;i<dimension && continuar=='s';i++)
+    {
+        printf("Ingrese un numero real: ");
+        scanf("%f",&arreglo[i]);
+        printf("Desea ingresar otro numero? s/n Respuesta: ");
+        fflush(stdin);
+        scanf("%c",&continuar);
+        printf("\n");
+    }
+    *validos=i;
+}                                                                       //FIN FUNCION CARGAFLOAT
+void sumaFloat(float arreglo[],int validos,float *suma)                 //INICIO FUNCION SUMAFLOAT
+{
+    int i;
+    for(i=0;i<validos;i++)
+    {
+        *suma=*suma+arreglo[i];
+    }
+}                                                                       //FIN FUNCION SUMAFLOAT
+void cargaChar(char arreglo[],int dimension,int *validos)               //INICIO FUNCION CARGACHAR
+{
+    int i;
+    char continuar='s';
+    for(i=0;i<dimension && continuar=='s';i++)
+    {
+        printf("Ingrese un caracter: ");
+        fflush(stdin);
+        scanf("%c",&arreglo[i]);
+        printf("Desea ingresar otro caracter? s/n Respuesta: ");
+        fflush(stdin);
+        scanf("%c",&continuar);
+        printf("\n");
+    }
+    *validos=i;
+}                                                                       //FIN FUNCION CARGACHAR
+/*void busquedaChar(char arreglo,int validos,int *flag,char caracter)     //INICIO FUNCION BUSQUEDACHAR
+{
+    int i;
+
+    for(i=0;i<validos && flag==0;i++)
+    {
+        if(caracter==arreglo[i])
+        {
+            *flag=1;
+        }
+    }
+
+
+}*/                                                                       //FIN FUNCION BUSQUEDACHAR
+void muestraChar(char arreglo[],int validos)                            //INICIO FUNCION MUESTRA
+{
+    int i;
+    for(i=0;i<validos;i++)
+    {
+        printf("| %i |",arreglo[i]);
+    }
+}                                                                       //FIN FUNCION MUESTRA
+
+
+
 void ejercicio1()
 {
     //Hacer una funcion que reciba como parametro un arreglo de numeros enteros y permita que el usuario ingrese valores al mismo por teclado.
     //La funcion debe retornar la cantidad de elementos cargados en el arreglo (o pueden utilizar como puntero validos).
-
+    int validos=0;
+    int arreglo[50]={};
+    cargaInt(arreglo,50,&validos);                                      //FUNCION CARGAINT
+    printf("La cantidad de elementos cargados es: %i\n\n",validos);
 }
 void ejercicio2()
 {
     //Hacer una funcion que reciba como parametro un arreglo y la cantidad de elementos (validos) cargados en el y los muestre por pantalla.
-
+    int validos=0;
+    int arreglo[50]={};
+    cargaInt(arreglo,50,&validos);                                      //FUNCION CARGAINT
+    muestra(arreglo,validos);                                           //FUNCION MUESTRA
+    printf("\n\n");
 }
 void ejercicio3()
 {
     //Hacer una funcion que reciba como parametro un arreglo y la cantidad de elementos (validos) cargados en el y calcule la suma de sus elementos.
+    int validos=0,suma=0;
+    int arreglo[50]={};
+    cargaInt(arreglo,50,&validos);                                      //FUNCION CARGAINT
+    sumaInt(arreglo,validos,&suma);                                     //FUNCION SUMAINT
+    printf("La suma de los elementos del arreglo es: %i",suma);
 }
 void ejercicio4()
 {
     //Hacer una funcion que reciba como parametro un arreglo, la cantidad de elementos (validos) cargados en el y una Pila.
     //La funcion debe copiar los elementos del arreglo en la pila.
-
+    int validos=0;
+    int arreglo[50]={};
+    Pila pila;
+    inicpila(&pila);
+    cargaInt(arreglo,50,&validos);                                      //FUNCION CARGAINT
+    arregloPila(arreglo,validos,&pila);                                 //FUNCION ARREGLOPILA
+    printf("La pila es: ");
+    mostrar(&pila);
 }
 void ejercicio5()
 {
     //Realizar una funcion que sume los elementos de un arreglo de numeros reales (float) de dimension 100.
     //Se recomienda hacer una funcion para cargar y otra para mostrar para este tipo de dato asociado al arreglo.
-
+    int validos=0;
+    float suma=0;
+    float arreglo[100]={};
+    cargaFloat(arreglo,100,&validos);                                   //FUNCION CARGAFLOAT
+    sumaFloat(arreglo,validos,&suma);                                   //FUNCION SUMAFLOAT
+    printf("La suma de los elementos del arreglo es: %.2f",suma);
 }
 void ejercicio6()
 {
     //Realizar una funcion que indique si un elemento dado se encuentra en un arreglo de caracteres.
-
+    int validos,flag=0;
+    char caracter;
+    char arreglo[50]={'4','g','r','?'};
+    //cargaChar(arreglo,50,&validos);                                     //FUNCION CARGACHAR
+    muestraChar(arreglo,validos);                                       //FUNCION MUESTRACHAR
+    /*printf("Ingrese el caracter que desea buscar: ");
+    fflush(stdin);
+    scanf("%c",&caracter);
+    busquedaChar(arreglo,validos,&flag,caracter);                       //FUNCION BUSQUEDACHAR
+    if(flag==1)
+    {
+        printf("El caracter %c esta en el arreglo.\n\n",caracter);
+    }
+    else
+    {
+        printf("El caracter %c no esta en el arreglo.\n\n",caracter);
+    }*/
 }
 void ejercicio7()
 {
