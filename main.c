@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "pila.h"
 #include <string.h>
-
+//FALTA 11 - 12 - 13
 void ejercicio1();
 void ejercicio2();
 void ejercicio3();
@@ -16,16 +16,20 @@ void ejercicio10();
 void ejercicio11();
 void ejercicio12();
 void ejercicio13();
-void cargaInt(int arreglo[],int dimension,int *valildos);
-void muestra(int arreglo[],int validos);
-void sumaInt(int arreglo[],int validos,int *suma);
-void cargaFloat(float arreglo[],int dimension,int *valildos);
-void sumaFloat(float arreglo[],int validos,float *suma);
-void cargaChar(char arreglo[],int dimension,int *validos);
-int busquedaChar(char arreglo[],int validos,char caracter);
-void muestraChar(char arreglo[],int validos);
-void cargaC(char arreglo[],int *validos);
-int ordenChar(char arreglo[],int validos);
+void cargaInt(int arreglo[],int dimension,int *valildos);               //(1)
+void muestraInt(int arreglo[],int validos);                             //(2)
+void sumaInt(int arreglo[],int validos,int *suma);                      //(3)
+void arregloPila(int arreglo[],int validos,Pila *pila);                 //(4)
+void cargaFloat(float arreglo[],int dimension,int *valildos);           //(5)
+void sumaFloat(float arreglo[],int validos,float *suma);                //(6)
+void cargaChar(char arreglo[],int dimension,int *validos);              //(7)
+void cargaString(char arreglo[],int *validos);                          //(8)
+int busquedaChar(char arreglo[],int validos,char caracter);             //(9)
+void muestraChar(char arreglo[],int validos);                           //(10)
+void muestraString(char arreglo[]);                                     //(11)
+int ordenChar(char arreglo[],int validos);                              //(12)
+void invertirArreglo(char arreglo[],int validos);                       //(13)
+int capicua(char arreglo[],int validos,char copia[]);                   //(14)
 int main()
 {
     int ejercicio;
@@ -126,10 +130,10 @@ int main()
     }
     while(ejercicio!=0);
     printf("\nTP4 TERMINADO\n");
-    printf("\nVersion 1.2\n");
+    printf("\nVersion 1.3\n");
     return 0;
 }
-void cargaInt(int arreglo[],int dimension,int *validos)                 //INICIO FUNCION CARGAINT
+void cargaInt(int arreglo[],int dimension,int *validos)                 //INICIO FUNCION CARGAINT               (1)
 {
     int i;
     char continuar='s';
@@ -144,7 +148,7 @@ void cargaInt(int arreglo[],int dimension,int *validos)                 //INICIO
     }
     *validos=i;
 }                                                                       //FIN FUNCION CARGAINT
-void muestra(int arreglo[],int validos)                                 //INICIO FUNCION MUESTRA
+void muestraInt(int arreglo[],int validos)                              //INICIO FUNCION MUESTRAINT             (2)
 {
     int i;
     printf("El arreglo es: \n");
@@ -152,8 +156,8 @@ void muestra(int arreglo[],int validos)                                 //INICIO
     {
         printf("| %i |",arreglo[i]);
     }
-}                                                                       //FIN FUNCION MUESTRA
-void sumaInt(int arreglo[],int validos,int *suma)                       //INICIO FUNCION SUMAINT
+}                                                                       //FIN FUNCION MUESTRAINT
+void sumaInt(int arreglo[],int validos,int *suma)                       //INICIO FUNCION SUMAINT                (3)
 {
     int i;
     for(i=0;i<validos;i++)
@@ -161,7 +165,7 @@ void sumaInt(int arreglo[],int validos,int *suma)                       //INICIO
         *suma=*suma+arreglo[i];
     }
 }                                                                       //FIN FUNCION SUMAINT
-void arregloPila(int arreglo[],int validos,Pila *pila)                  //INICIO FUNCION ARREGLOPILA
+void arregloPila(int arreglo[],int validos,Pila *pila)                  //INICIO FUNCION ARREGLOPILA            (4)
 {
     int i;
     for(i=0;i<validos;i++)
@@ -169,7 +173,7 @@ void arregloPila(int arreglo[],int validos,Pila *pila)                  //INICIO
         apilar(pila,arreglo[i]);
     }
 }                                                                       //FIN FUNCION ARREGLOPILA
-void cargaFloat(float arreglo[],int dimension,int *validos)             //INICIO FUNCION CARGAFLOAT
+void cargaFloat(float arreglo[],int dimension,int *validos)             //INICIO FUNCION CARGAFLOAT             (5)
 {
     int i;
     char continuar='s';
@@ -184,7 +188,7 @@ void cargaFloat(float arreglo[],int dimension,int *validos)             //INICIO
     }
     *validos=i;
 }                                                                       //FIN FUNCION CARGAFLOAT
-void sumaFloat(float arreglo[],int validos,float *suma)                 //INICIO FUNCION SUMAFLOAT
+void sumaFloat(float arreglo[],int validos,float *suma)                 //INICIO FUNCION SUMAFLOAT              (6)
 {
     int i;
     for(i=0;i<validos;i++)
@@ -192,7 +196,7 @@ void sumaFloat(float arreglo[],int validos,float *suma)                 //INICIO
         *suma=*suma+arreglo[i];
     }
 }                                                                       //FIN FUNCION SUMAFLOAT
-void cargaChar(char arreglo[],int dimension,int *validos)               //INICIO FUNCION CARGACHAR
+void cargaChar(char arreglo[],int dimension,int *validos)               //INICIO FUNCION CARGACHAR              (7)
 {
     int i;
     char continuar='s';
@@ -208,7 +212,14 @@ void cargaChar(char arreglo[],int dimension,int *validos)               //INICIO
     }
     *validos=i;
 }                                                                       //FIN FUNCION CARGACHAR
-int busquedaChar(char arreglo[],int validos,char caracter)              //INICIO FUNCION BUSQUEDACHAR
+void cargaString(char arreglo[],int *validos)                           //INICIO FUNCION CARGASTRING            (8)
+{
+    printf("Introduce una cadena de caracteres: ");
+    scanf("%s",arreglo);
+    *validos=strlen(arreglo);
+    printf("\n");
+}                                                                       //FIN FUNCION CARGASTRING
+int busquedaChar(char arreglo[],int validos,char caracter)              //INICIO FUNCION BUSQUEDACHAR           (9)
 {
     int i,flag=0;
     for(i=0;i<validos && flag==0;i++)
@@ -220,7 +231,7 @@ int busquedaChar(char arreglo[],int validos,char caracter)              //INICIO
     }
     return flag;
 }                                                                       //FIN FUNCION BUSQUEDACHAR
-void muestraChar(char arreglo[],int validos)                            //INICIO FUNCION MUESTRA
+void muestraChar(char arreglo[],int validos)                            //INICIO FUNCION MUESTRACHAR            (10)
 {
     int i;
     printf("El arreglo es: \n");
@@ -228,14 +239,12 @@ void muestraChar(char arreglo[],int validos)                            //INICIO
     {
         printf("| %c |",arreglo[i]);
     }
-}                                                                       //FIN FUNCION MUESTRA
-void cargaC(char arreglo[],int *validos)                                //INICIO FUNCION CARGAC
+}                                                                       //FIN FUNCION MUESTRACHAR
+void muestraString(char arreglo[])                                      //INICIO FUNCION MUESTRASTRING          (11)
 {
-    printf("Introduce una cadena de caracteres: ");
-    scanf("%s",arreglo);
-    *validos=strlen(arreglo);
-}                                                                       //FIN FUNCION CARGAC
-int ordenChar(char arreglo[],int validos)                               //INICIO FUNCION ORDENCHAR
+    printf("El arreglo es: %s\n",arreglo);
+}                                                                       //FIN FUNCION MUESTRASTRING
+int ordenChar(char arreglo[],int validos)                               //INICIO FUNCION ORDENCHAR              (12)
 {
     int i,j,flag=0;
     char aux;
@@ -257,6 +266,34 @@ int ordenChar(char arreglo[],int validos)                               //INICIO
     }
     return flag;
 }                                                                       //FIN FUNCION ORDENCHAR
+void invertirArreglo(char arreglo[],int validos)                        //INICIO FUNCION INVERTIRARREGLO        (13)
+{
+    int i;
+    char caracter;
+    for(i=0;i<validos/2;i++)
+    {
+        caracter=arreglo[i];
+        arreglo[i]=arreglo[validos-1-i];
+        arreglo[validos-1-i]=caracter;
+    }
+}                                                                       //FIN FUNCION INVERTIRARREGLO
+int capicua(char arreglo[],int validos,char copia[])                    //INICIO FUNCION CAPICUA                (14)
+{
+    int i=0,flag=1;
+    while(i<validos && flag==1)
+    {
+        if(arreglo[i]==copia[i])
+        {
+            i++;
+            flag=1;
+        }
+        else
+        {
+            flag=0;
+        }
+    }
+    return flag;
+}                                                                       //FIN FUNCION CAPICUA
 void ejercicio1()
 {
     //Hacer una funcion que reciba como parametro un arreglo de numeros enteros y permita que el usuario ingrese valores al mismo por teclado.
@@ -272,7 +309,7 @@ void ejercicio2()
     int validos=0;
     int arreglo[50]={};
     cargaInt(arreglo,50,&validos);                                      //FUNCION CARGAINT
-    muestra(arreglo,validos);                                           //FUNCION MUESTRA
+    muestraInt(arreglo,validos);                                        //FUNCION MUESTRAINT
     printf("\n\n");
 }
 void ejercicio3()
@@ -281,8 +318,9 @@ void ejercicio3()
     int validos=0,suma=0;
     int arreglo[50]={};
     cargaInt(arreglo,50,&validos);                                      //FUNCION CARGAINT
+    muestraInt(arreglo,validos);                                        //FUNCION MUESTRAINT
     sumaInt(arreglo,validos,&suma);                                     //FUNCION SUMAINT
-    printf("La suma de los elementos del arreglo es: %i\n\n",suma);
+    printf("\n\nLa suma de los elementos del arreglo es: %i\n\n",suma);
 }
 void ejercicio4()
 {
@@ -293,8 +331,9 @@ void ejercicio4()
     Pila pila;
     inicpila(&pila);
     cargaInt(arreglo,50,&validos);                                      //FUNCION CARGAINT
+    muestraInt(arreglo,validos);                                        //FUNCION MUESTRAINT
     arregloPila(arreglo,validos,&pila);                                 //FUNCION ARREGLOPILA
-    printf("La pila es: ");
+    printf("\n\nLa pila es: ");
     mostrar(&pila);
 }
 void ejercicio5()
@@ -315,9 +354,10 @@ void ejercicio6()
     char caracter;
     char arreglo[50]={};
     //cargaChar(arreglo,50,&validos);                                     //FUNCION CARGACHAR
-    cargaC(arreglo,&validos);                                           //FUNCION CARGAC
+    cargaString(arreglo,&validos);                                      //FUNCION CARGASTRING
     muestraChar(arreglo,validos);                                       //FUNCION MUESTRACHAR
-    printf("Ingrese el caracter que desea buscar: ");
+    //muestraString(arreglo);                                             //FUNCION MUESTRASTRING
+    printf("\n\nIngrese el caracter que desea buscar: ");
     fflush(stdin);
     scanf("%c",&caracter);
     flag=busquedaChar(arreglo,validos,caracter);                        //FUNCION BUSQUEDACHAR
@@ -335,13 +375,14 @@ void ejercicio7()
     //Realizar una funcion que inserte un caracter en un arreglo ordenado alfabeticamente, conservando el orden.
     int validos=0,flag=0;
     char arreglo[50]={};
-    cargaC(arreglo,&validos);                                           //FUNCION CARGAC
     //cargaChar(arreglo,50,&validos);                                     //FUNCION CARGACHAR
+    cargaString(arreglo,&validos);                                      //FUNCION CARGASTRING
     while(flag!=1)
     {
         flag=ordenChar(arreglo,validos);                                //FUNCION ORDENCHAR
     }
     muestraChar(arreglo,validos);                                       //FUNCION MUESTRACHAR
+    //muestraString(arreglo);                                             //FUNCION MUESTRASTRING
     printf("\n\nIntroduce un caracter: ");
     fflush(stdin);
     scanf("%c",&arreglo[validos]);
@@ -352,19 +393,62 @@ void ejercicio7()
         flag=ordenChar(arreglo,validos);                                //FUNCION ORDENCHAR
     }
     muestraChar(arreglo,validos);                                       //FUNCION MUESTRACHAR
+    //muestraString(arreglo);                                             //FUNCION MUESTRASTRING
     printf("\n\n");
 }
 void ejercicio8()
 {
     //Realizar una funcion que obtenga el maximo caracter de un arreglo dado.
+    int validos=0,flag=0;
+    char arreglo[50]={};
+    //cargaChar(arreglo,50,&validos);                                     //FUNCION CARGACHAR
+    cargaString(arreglo,&validos);                                      //FUNCION CARGASTRING
+    while(flag!=1)
+    {
+        flag=ordenChar(arreglo,validos);                                //FUNCION ORDENCHAR
+    }
+    printf("Arreglo ordenado\n");
+    muestraChar(arreglo,validos);                                       //FUNCION MUESTRACHAR
+    //muestraString(arreglo);                                             //FUNCION MUESTRASTRING
+    printf("\n\nEntendiendo que el maximo caracter es el que tiene el numero mas alto en el codigo ascii, el maximo es \"%c\".\n\n",arreglo[validos-1]);
 }
 void ejercicio9()
 {
     //Realizar una funcion que determine si un arreglo es capicua.
+    int validos=0;
+    int flag;
+    char arreglo[50]={},copia[50]={};
+    //cargaChar(arreglo,50,&validos);                                     //FUNCION CARGACHAR
+    cargaString(arreglo,&validos);                                      //FUNCION CARGASTRING
+    strcpy(copia,arreglo);
+    invertirArreglo(copia,validos);                                     //FUNCION INVERTIRARREGLO
+    muestraChar(arreglo,validos);                                       //FUNCION MUESTRACHAR
+    printf("\n\n");
+    flag=capicua(arreglo,validos,copia);                                //FUNCION CAPICUA
+    if(flag==1)
+    {
+        printf("El arreglo es capicua.");
+    }
+    else
+    {
+        printf("El arreglo no es capicua.");
+    }
+    printf("\n\n");
 }
 void ejercicio10()
 {
     //Realizar una funcion que invierta los elementos de un arreglo (sin utilizar un arreglo auxiliar).
+    int validos=0;
+    char arreglo[50]={};
+    //cargaChar(arreglo,50,&validos);                                     //FUNCION CARGACHAR
+    cargaString(arreglo,&validos);                                      //FUNCION CARGASTRING
+    muestraChar(arreglo,validos);                                       //FUNCION MUESTRACHAR
+    printf("\n\n");
+    invertirArreglo(arreglo,validos);                                   //FUNCION INVERTIRARREGLO
+    printf("Arreglo invertido\n");
+    muestraChar(arreglo,validos);                                       //FUNCION MUESTRACHAR
+    //muestraString(arreglo);                                             //FUNCION MUESTRASTRING
+    printf("\n\n");
 }
 void ejercicio11()
 {
