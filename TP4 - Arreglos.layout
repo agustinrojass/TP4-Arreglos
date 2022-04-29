@@ -2,34 +2,44 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
+	<File name="pila.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="374" topLine="0" />
+		</Cursor>
+	</File>
 	<File name="main.c" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="4782" topLine="111" />
+			<Cursor1 position="20481" topLine="168" />
 		</Cursor>
 		<Folding>
-			<Collapse line="136" />
-			<Collapse line="151" />
-			<Collapse line="160" />
-			<Collapse line="168" />
-			<Collapse line="176" />
-			<Collapse line="191" />
-			<Collapse line="199" />
-			<Collapse line="215" />
-			<Collapse line="222" />
-			<Collapse line="234" />
-			<Collapse line="243" />
-			<Collapse line="247" />
-			<Collapse line="269" />
-			<Collapse line="280" />
-			<Collapse line="297" />
-			<Collapse line="306" />
-			<Collapse line="325" />
-			<Collapse line="339" />
-			<Collapse line="350" />
-			<Collapse line="373" />
+			<Collapse line="138" />
+			<Collapse line="153" />
+			<Collapse line="162" />
+			<Collapse line="170" />
+			<Collapse line="178" />
+			<Collapse line="193" />
+			<Collapse line="201" />
+			<Collapse line="217" />
+			<Collapse line="224" />
+			<Collapse line="236" />
+			<Collapse line="245" />
+			<Collapse line="249" />
+			<Collapse line="271" />
+			<Collapse line="282" />
+			<Collapse line="299" />
+			<Collapse line="312" />
+			<Collapse line="323" />
+			<Collapse line="332" />
+			<Collapse line="341" />
+			<Collapse line="351" />
+			<Collapse line="365" />
+			<Collapse line="376" />
 			<Collapse line="399" />
-			<Collapse line="415" />
-			<Collapse line="438" />
+			<Collapse line="425" />
+			<Collapse line="441" />
+			<Collapse line="464" />
+			<Collapse line="497" />
+			<Collapse line="523" />
 		</Folding>
 	</File>
 </CodeBlocks_layout_file>

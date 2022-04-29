@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1651012505 source:c:\users\usuario\documents\utn\2022\1er cuatrimestre\programación\archivos c\tp4 - arreglos\main.c
+1651261405 source:c:\users\usuario\documents\utn\2022\1er cuatrimestre\programación\archivos c\tp4 - arreglos\main.c
 	<stdio.h>
 	<stdlib.h>
 	"pila.h"
