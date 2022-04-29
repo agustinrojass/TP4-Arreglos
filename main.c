@@ -3,6 +3,7 @@
 #include "pila.h"
 #include <string.h>
 
+char menu;
 void ejercicio1();
 void ejercicio2();
 void ejercicio3();
@@ -36,9 +37,11 @@ void ordenSeleccion(int arreglo[],int validos);                                 
 int posicionMenor (int arreglo[],int i,int validos);                                                    //(18)
 void ordenInsercion(int arreglo[],int validos);                                                         //(19)
 void insertar(int arreglo[], int i, int dato);                                                          //(20)
+void volverMenu();                                                                                      //(21)
 int main()
 {
     int ejercicio;
+
     do
     {
         do
@@ -136,7 +139,7 @@ int main()
     }
     while(ejercicio!=0);
     printf("\nTP4 TERMINADO\n");
-    printf("\nVersion 1.5\n");
+    printf("\nVersion 1.6\n");
     return 0;
 }
 void cargaInt(int arreglo[],int dimension,int *validos)                                             //INICIO FUNCION CARGAINT               (1)
@@ -322,7 +325,6 @@ void sumaAnteriores(int arreglo[],int validos,int arregloSuma[])                
         sumaInt(arreglo,i+1,&suma);
         arregloSuma[i]=suma;
     }
-
 }                                                                                                   //FIN FUNCION SUMAANTERIORES
 void ordenSeleccion(int arreglo[],int validos)                                                      //INICIO FUNCION ORDENSELLECION         (17)
 {
@@ -371,6 +373,13 @@ void insertar(int arreglo[], int i, int valor)                                  
     }
     arreglo[i+1]=valor;
 }                                                                                                   //FIN FUNCION INSERTAR
+void volverMenu()                                                                                   //INICIO FUNCION VOLVERMENU             (21)
+{
+    printf("Enter para volver al menu: ");
+    fflush(stdin);
+    scanf("%c",&menu);
+    printf("\n");
+}                                                                                                   //FIN FUNCION VOLVERMENU
 void ejercicio1()
 {
     //Hacer una funcion que reciba como parametro un arreglo de numeros enteros y permita que el usuario ingrese valores al mismo por teclado.
@@ -379,6 +388,7 @@ void ejercicio1()
     int arreglo[50]={};
     cargaInt(arreglo,50,&validos);                                                                  //FUNCION CARGAINT
     printf("La cantidad de elementos cargados es: %i\n\n",validos);
+    volverMenu();                                                                                   //FUNCION VOLVERMENU
 }
 void ejercicio2()
 {
@@ -388,6 +398,7 @@ void ejercicio2()
     cargaInt(arreglo,50,&validos);                                                                  //FUNCION CARGAINT
     muestraInt(arreglo,validos);                                                                    //FUNCION MUESTRAINT
     printf("\n\n");
+    volverMenu();                                                                                   //FUNCION VOLVERMENU
 }
 void ejercicio3()
 {
@@ -398,6 +409,7 @@ void ejercicio3()
     muestraInt(arreglo,validos);                                                                    //FUNCION MUESTRAINT
     sumaInt(arreglo,validos,&suma);                                                                 //FUNCION SUMAINT
     printf("\n\nLa suma de los elementos del arreglo es: %i\n\n",suma);
+    volverMenu();                                                                                   //FUNCION VOLVERMENU
 }
 void ejercicio4()
 {
@@ -412,6 +424,7 @@ void ejercicio4()
     arregloPila(arreglo,validos,&pila);                                                             //FUNCION ARREGLOPILA
     printf("\n\nLa pila es: ");
     mostrar(&pila);
+    volverMenu();                                                                                   //FUNCION VOLVERMENU
 }
 void ejercicio5()
 {
@@ -423,6 +436,7 @@ void ejercicio5()
     cargaFloat(arreglo,100,&validos);                                                               //FUNCION CARGAFLOAT
     sumaFloat(arreglo,validos,&suma);                                                               //FUNCION SUMAFLOAT
     printf("La suma de los elementos del arreglo es: %.2f\n\n",suma);
+    volverMenu();                                                                                   //FUNCION VOLVERMENU
 }
 void ejercicio6()
 {
@@ -444,6 +458,7 @@ void ejercicio6()
     {
         printf("El caracter %c no esta en el arreglo.\n\n",caracter);
     }
+    volverMenu();                                                                                   //FUNCION VOLVERMENU
 }
 void ejercicio7()
 {
@@ -467,6 +482,7 @@ void ejercicio7()
     }
     muestraChar(arreglo,validos);                                                                   //FUNCION MUESTRACHAR
     printf("\n\n");
+    volverMenu();                                                                                   //FUNCION VOLVERMENU
 }
 void ejercicio8()
 {
@@ -474,13 +490,13 @@ void ejercicio8()
     int validos=0,flag=0;
     char arreglo[50]={};
     cargaString(arreglo,&validos);                                                                  //FUNCION CARGASTRING
+    muestraChar(arreglo,validos);                                                                   //FUNCION MUESTRACHAR
     while(flag!=1)
     {
         flag=ordenChar(arreglo,validos);                                                            //FUNCION ORDENCHAR
     }
-    printf("Arreglo ordenado\n");
-    muestraChar(arreglo,validos);                                                                   //FUNCION MUESTRACHAR
     printf("\n\nEntendiendo que el maximo caracter es el que tiene el numero mas alto en el codigo ascii, el maximo es \"%c\".\n\n",arreglo[validos-1]);
+    volverMenu();                                                                                   //FUNCION VOLVERMENU
 }
 void ejercicio9()
 {
@@ -503,6 +519,7 @@ void ejercicio9()
         printf("El arreglo no es capicua.");
     }
     printf("\n\n");
+    volverMenu();                                                                                   //FUNCION VOLVERMENU
 }
 void ejercicio10()
 {
@@ -516,6 +533,7 @@ void ejercicio10()
     printf("Arreglo invertido\n");
     muestraChar(arreglo,validos);                                                                   //FUNCION MUESTRACHAR
     printf("\n\n");
+    volverMenu();                                                                                   //FUNCION VOLVERMENU
 }
 void ejercicio11()
 {
@@ -550,6 +568,7 @@ void ejercicio11()
     printf("\nArreglo ordenado\n");
     muestraInt(arreglo,validos);                                                                    //FUNCION MUESTRAINT
     printf("\n\n");
+    volverMenu();                                                                                   //FUNCION VOLVERMENU
 }
 void ejercicio12()
 {
@@ -562,18 +581,23 @@ void ejercicio12()
     {
         flag1=ordenChar(arreglo1,validos1);                                                         //FUNCION ORDENCHAR
     }
+    printf("Arreglo 1 ordenado\n");
     muestraChar(arreglo1,validos1);                                                                 //FUNCION MUESTRACHAR
     while(flag2!=1)
     {
         flag2=ordenChar(arreglo2,validos2);                                                         //FUNCION ORDENCHAR
     }
+    printf("\n\nArreglo 2 ordenado\n");
     muestraChar(arreglo2,validos2);                                                                 //FUNCION MUESTRACHAR
     juntarArreglos(arreglo1,validos1,arreglo2,validos2,arregloFinal);                               //FUNCION JUNTARARREGLOS
     while(flagFinal!=1)
     {
         flagFinal=ordenChar(arregloFinal,validos1+validos2);                                        //FUNCION ORDENCHAR
     }
-    muestraChar(arregloFinal,validos1+validos2);
+    printf("\n\nArreglo Final ordenado\n");
+    muestraChar(arregloFinal,validos1+validos2);                                                    //FUNCION MUESTRACHAR
+    printf("\n\n");
+    volverMenu();                                                                                   //FUNCION VOLVERMENU
 }
 void ejercicio13()
 {
@@ -587,4 +611,5 @@ void ejercicio13()
     printf("Arreglo suma de los anteriores\n");
     muestraInt(arregloFinal,validos);                                   //FUNCION MUESTRAINT
     printf("\n\n");
+    volverMenu();                                                                                   //FUNCION VOLVERMENU
 }
