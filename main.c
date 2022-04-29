@@ -41,7 +41,6 @@ void volverMenu();                                                              
 int main()
 {
     int ejercicio;
-
     do
     {
         do
@@ -139,7 +138,7 @@ int main()
     }
     while(ejercicio!=0);
     printf("\nTP4 TERMINADO\n");
-    printf("\nVersion 1.6\n");
+    printf("\nVersion 1.7\n");
     return 0;
 }
 void cargaInt(int arreglo[],int dimension,int *validos)                                             //INICIO FUNCION CARGAINT               (1)
